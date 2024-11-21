@@ -38,7 +38,7 @@ Follow these steps to set up your local development environment:
    ```bash
    npm start
    ```
-   If you completed step 7 correctly, Vite and Flask should both start up at the same time.
+   If you completed step 4 correctly, Vite and Flask should both start up at the same time.
    The frontend (Vite) will be located at
    ```url
    http://localhost/:5173
