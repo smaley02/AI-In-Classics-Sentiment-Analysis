@@ -3,7 +3,7 @@ import '../css/styles.css';
 
 const Title: React.FC = () => {
     const [title, setTitle] = useState<string>("< "); // Initial state with the opening bracket
-    const fullTitle: string = "         Welcome to the AI-in-Classics Sentiment Analysis Tool"; // The complete title text
+    const fullTitle: string = "         AI-in-Classics Sentiment Analysis Tool"; // The complete title text
                               // ^^^^ fixme, spaces needed to not scramble the words "welcome"
     useEffect(() => {
         let index = 0; 

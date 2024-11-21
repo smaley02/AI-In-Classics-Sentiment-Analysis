@@ -1,3 +1,9 @@
+/* 
+
+---------------------------------------- BASE CSS ----------------------------------------
+
+*/
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -49,9 +55,62 @@ body::before {
     z-index: -1; /* Ensure overlay is behind content */
 }
 
+/* 
+
+---------------------------------------- HOMEPAGE CSS ----------------------------------------
+
+*/
+
+.homepage-button {
+    font-family: monospace;
+    margin-top: 20px;
+    padding: 20px 30px;
+    font-size: 30px;
+    background-color: transparent;
+    color: rgb(212, 211, 211);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    animation: fadeIn 2s ease;
+}
+
+.homepage-button:hover {
+    opacity: 50%;
+}
+
+/* 
+
+---------------------------------------- SHARED CSS ----------------------------------------
+
+*/
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align items in the container */
+    justify-content: center; /* Center vertically */
+    height: 100vh; /* Make the container fill the viewport height */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/*
+
+---------------------------------------- TITLE CSS ----------------------------------------
+
+*/
+
 .title {
     font-family: monospace;
-    font-size: 30pt;
+    font-size: 40pt;
     text-align: left;
     position: fixed;
     color: rgb(255, 255, 255);
@@ -66,48 +125,11 @@ body::before {
     animation: fadeIn 2s ease;
 }
 
+/* 
 
+---------------------------------------- INPUT FORM CSS ----------------------------------------
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-.app-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center align items in the container */
-    justify-content: center; /* Center vertically */
-    height: 100vh; /* Make the container fill the viewport height */
-}
-
-.toggle-button {
-    padding: 30px 45px; /* Increase padding for larger buttons */
-    font-size: 30px; /* Adjust font size for better visibility */
-    background:transparent;
-    border: none; /* Remove default border */
-    border-radius: 5px; /* Rounded corners */
-    /* background-color: #4CAF50; Green background */
-    border: 1px solid #ccc;
-    color: #ffffff; /* White text */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s; /* Transition effect for hover */
-    opacity: 90%;
-}
-
-.button-container {
-    font-family: monospace;
-    display: flex; /* Use Flexbox */
-    background:transparent;
-    justify-content: space-around; /* Distribute space evenly between buttons */
-    gap: 300px;
-    width: 100%; /* Make the container take full width */
-    margin: 20px; /* Add margin for spacing */
-}
+*/
 
 .form-container {
     display: flex;
@@ -129,7 +151,7 @@ body::before {
     font-weight: bold;
 }
 
-.input-field {
+.form-input-field {
     width: 50%;
     padding: 10px;
     font-size: 16px;
@@ -191,4 +213,137 @@ body::before {
 
 .generate-button:hover {
     background-color: #3d97ba;
+}
+
+/* 
+
+---------------------------------------- ANALYSIS PAGE CSS ----------------------------------------
+
+*/
+
+/* Layout for Analysis Page */
+.analysis-page-layout {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    justify-content: center; /* Center vertically */
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* Form Container on the Left */
+.analysis-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    padding: 5px;
+    border-radius: 15px;
+    width: 300px;
+    height: auto; /* Adjust height for better flexibility */
+    box-sizing: border-box; /* Ensure padding is included in total height */
+    background-color: rgba(0, 0, 0, 0.5); /* Set background color with transparency */
+    gap: 10px; /* Adjust gap to control spacing between child elements */
+}
+
+.analysis-word-input {
+    width: 60%;
+    padding: 5px;
+    font-size: 15px;
+    /* margin-bottom: 20px; */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.analysis-time-period-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0px; /* Reduce horizontal gap between date inputs */
+    margin-top: -40px; /* Remove extra vertical margin */
+    margin-bottom: 0px; /* Remove extra vertical margin */
+}
+
+.analysis-year-input-right {
+    width: 20%;
+    padding: 5px;
+    font-size: 15px;
+    border: 1px solid #8e44ad;
+    border-radius: 5px;
+    text-align: center;
+    margin-right: 50px;
+}
+
+.analysis-year-input-left {
+    width: 20%;
+    padding: 5px;
+    font-size: 15px;
+    border: 1px solid #8e44ad;
+    border-radius: 5px;
+    text-align: center;
+    margin-left: 50px;
+}
+
+.analysis-form-title {
+    margin-bottom: -15px;
+    margin-top: 0px;
+    width: 90%;
+    font-size: 20px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.update-button {
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    font-size: 15px;
+    background-color: #014603;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.update-button:hover {
+    background-color: #3d97ba;
+}
+
+/* Results Container on the Right */
+.results-container {
+    flex: 2;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5); /* Set background color with transparency */
+    border-radius: 10px;
+    width: 70vw; /* 60% of the viewport width */
+    height: 80vh; /* 70% of the viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%; /* Prevent it from exceeding the viewport width */
+    max-height: 100%; /* Prevent it from exceeding the viewport height */
+}
+
+.results-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.results-placeholder {
+    flex: 1;
+    width: 90%;
+    height: auto;
+    background-color: #bebebe;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 2px dashed #ccc;
+    color: #666;
+    font-size: 1rem;
+    text-align: center;
 }

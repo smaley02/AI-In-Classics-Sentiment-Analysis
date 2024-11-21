@@ -1,19 +1,17 @@
-import { useState } from "react";
-import Title from "./tsx/title";
-import './css/styles.css';
-import InputForm from "./tsx/input-form";
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import InputFormPage from "./pages/InputFormPage";
+import AnalysisPage from "./pages/AnalysisPage";
 
 export default function App() {
-    const [titleOpacity] = useState(1); // Control title opacity
     return (
-        <div className="app-container">
-            <div style={{ opacity: titleOpacity, transition: 'opacity 0.5s ease-in-out', textAlign: 'center' }}>
-                <Title />
-            </div>
-
-            <div>
-                {<InputForm />}
-            </div>
-        </div>
+        <Router>
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/input-form" element={<InputFormPage />} />
+                <Route path="/analysis" element={<AnalysisPage />} />
+            </Routes>
+        </Router>
     );
 }
