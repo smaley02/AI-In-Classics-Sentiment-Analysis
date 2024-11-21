@@ -11,23 +11,31 @@ def index():
 
 @app.route('/api/analyze', methods=['POST'])
 def analyze_word():
-    # Get the JSON data from the request
-    data = request.json
-    word = data.get('word')
-    start_year = data.get('startYear')
-    end_year = data.get('endYear')
+    try:
+        data = request.json
+        word = data.get('word')
+        start_year = data.get('startYear')
+        end_year = data.get('endYear')
 
-    # Process the data (this is just an example)
-    response_data = {
-        "word": word,
-        "startYear": start_year,
-        "endYear": end_year,
-        "message": "Analysis completed!"  # You can customize this message
-    }
+        # Validate inputs
+        if not word or not start_year or not end_year:
+            return jsonify({"error": "All fields are required"}), 400
 
-    # Return the processed data as JSON
-    print(response_data)
-    return jsonify(response_data)
+        # Process data here
+
+        # Repackage data
+        response_data = {
+            "word": word,
+            "startYear": start_year,
+            "endYear": end_year,
+            "message": "Analysis completed!" 
+        }
+
+        print(response_data)
+        return jsonify(response_data)
+    except Exception as e:
+        print("Error during processing:", e)
+        return jsonify({"error": "An internal error occurred"}), 500
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)  # Run Flask on port 5000

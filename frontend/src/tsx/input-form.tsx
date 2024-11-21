@@ -6,9 +6,19 @@ export default function InputForm() {
     const [word, setWord] = useState('');
     const [startYear, setStartYear] = useState('');
     const [endYear, setEndYear] = useState('');
+    const [error, setError] = useState('');  // To hold error message
     const navigate = useNavigate();
 
     const handleGenerate = async () => {
+        // Clear any previous error message
+        setError('');
+
+        // Validate if all fields are filled
+        if (!word || !startYear || !endYear) {
+            setError('All fields are required!');
+            return; 
+        }
+
         try {
             const response = await fetch('http://127.0.0.1:5000/api/analyze', {
                 method: 'POST',
@@ -17,18 +27,19 @@ export default function InputForm() {
                 },
                 body: JSON.stringify({ word, startYear, endYear }),
             });
-
+    
             if (response.ok) {
                 const result = await response.json();
-                console.log(result); // Handle the response as needed
-
-                // Navigate to the analysis page (pass data if needed)
-                navigate('/analysis');
+                console.log("Input-Form - Backend response:", result); 
+                // Navigate to the analysis page with the data
+                navigate('/analysis', { state: result });
             } else {
                 console.error('Error:', response.statusText);
+                setError('Failed to get analysis from backend');  // Set error message if response fails
             }
         } catch (error) {
             console.error('Error:', error);
+            setError('Error connecting to the server');  // Set error message if there is a connection issue
         }
     };
 
@@ -62,6 +73,9 @@ export default function InputForm() {
                     onChange={(e) => setEndYear(e.target.value)}
                 />
             </div>
+
+            {/* Error message display */}
+            {error && <div className="error-message">{error}</div>}
 
             <button className="generate-button" onClick={handleGenerate}>Submit</button>
         </div>

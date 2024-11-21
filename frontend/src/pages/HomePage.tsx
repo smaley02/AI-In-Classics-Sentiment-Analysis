@@ -16,7 +16,7 @@ export default function HomePage() {
                 <Title />
             </div>
             <button className="homepage-button" onClick={handleNavigate}>
-                Continue to Input Form
+                Continue to Analysis Tool
             </button>
         </div>
     );

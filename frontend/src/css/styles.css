@@ -57,6 +57,35 @@ body::before {
 
 /* 
 
+---------------------------------------- SHARED CSS ----------------------------------------
+
+*/
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align items in the container */
+    justify-content: center; /* Center vertically */
+    height: 100vh; /* Make the container fill the viewport height */
+}
+
+@keyframes fadeIn { /* Animation for landing page stylization */
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* 
+
 ---------------------------------------- HOMEPAGE CSS ----------------------------------------
 
 */
@@ -77,29 +106,6 @@ body::before {
 
 .homepage-button:hover {
     opacity: 50%;
-}
-
-/* 
-
----------------------------------------- SHARED CSS ----------------------------------------
-
-*/
-
-.app-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center align items in the container */
-    justify-content: center; /* Center vertically */
-    height: 100vh; /* Make the container fill the viewport height */
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
 }
 
 /*
@@ -331,6 +337,16 @@ body::before {
     font-size: 1.5rem;
     margin-bottom: 20px;
     color: #ffffff;
+}
+
+.current-data {
+    display: flex;
+    flex-direction: row; /* Ensures the child elements are displayed side by side */
+    gap: 20px; /* Adds space between each <p> element */
+    font-size:15px
+}
+.current-data p {
+    margin: 0; /* Removes default margin from <p> tags */
 }
 
 .results-placeholder {
