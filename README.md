@@ -12,7 +12,7 @@ Follow these steps to set up your local development environment:
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/bmansour1/Disease-Detecting-Doctors.git
+   git clone https://github.com/smaley02/AI-In-Classics-Sentiment-Analysis.git
    ```
 2. **Create venv and Install Packages**
 
