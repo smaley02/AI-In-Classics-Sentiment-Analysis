@@ -2,13 +2,22 @@ import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from "react-router-dom"; 
 import "../css/styles.css";
+import current_frequency from "../../../backend/temp/current_frequency.png";
+import copy_1 from "../../../backend/temp/copy_1.png"; // change as needed
+import copy_2 from  "../../../backend/temp/copy_2.png"; // change as needed
+
+const imagePaths = [
+    current_frequency,
+    copy_1,
+    copy_2,
+];
 
 export default function Analysis() {
     const location = useLocation();
     const initialData = location.state || { word: "", startYear: "", endYear: "" };
     const navigate = useNavigate();
 
-    const [word, setWord] = useState(initialData.word); // Default values passed from location.state
+    const [word, setWord] = useState(initialData.word);
     const [startYear, setStartYear] = useState(initialData.startYear);
     const [endYear, setEndYear] = useState(initialData.endYear);
 
@@ -17,18 +26,17 @@ export default function Analysis() {
     const [updatedEndYear, setUpdatedEndYear] = useState(endYear);
 
     const [error, setError] = useState(""); // To hold error message
+    const [imageKey, setImageKey] = useState(Date.now()); // To force image refresh
+    const [currentImageIndex, setCurrentImageIndex] = useState(0); // Track the current image index
 
     const handleUpdate = async () => {
-        // Clear any previous error message
         setError('');
 
-        // Validate if all fields are filled
         if (!updatedWord || !updatedStartYear || !updatedEndYear) {
             setError('All fields are required!');
             return; 
         }
 
-        // On submit, update the state values to reflect the current input values
         setWord(updatedWord);
         setStartYear(updatedStartYear);
         setEndYear(updatedEndYear);
@@ -58,7 +66,22 @@ export default function Analysis() {
             console.error('Error:', error);
             setError('Error connecting to the server');
         }
+        // Refresh the image by updating the image key
+        setImageKey(Date.now());
     };
+
+    const handlePreviousImage = () => {
+        setCurrentImageIndex((prevIndex) =>
+            prevIndex === 0 ? imagePaths.length - 1 : prevIndex - 1
+        );
+    };
+
+    const handleNextImage = () => {
+        setCurrentImageIndex((prevIndex) =>
+            prevIndex === imagePaths.length - 1 ? 0 : prevIndex + 1
+        );
+    };
+        
 
     return (
         <div className="analysis-page-layout">
@@ -71,7 +94,7 @@ export default function Analysis() {
                     type="text"
                     className="analysis-word-input"
                     placeholder="Latin or Ancient Greek"
-                    value={updatedWord}  // Use the updated state for value
+                    value={updatedWord}
                     onChange={(e) => setUpdatedWord(e.target.value)}
                 />
 
@@ -83,21 +106,19 @@ export default function Analysis() {
                         type="text"
                         className="analysis-year-input-left"
                         placeholder="+/- yyyy"
-                        value={updatedStartYear}  // Use the updated state for value
-                        onChange={(e) => setUpdatedStartYear(e.target.value)} 
+                        value={updatedStartYear}
+                        onChange={(e) => setUpdatedStartYear(e.target.value)}
                     />
                     <span className="to-text">to</span>
                     <input
                         type="text"
                         className="analysis-year-input-right"
                         placeholder="+/- yyyy"
-                        value={updatedEndYear}  // Use the updated state for value
-                        onChange={(e) => setUpdatedEndYear(e.target.value)} 
+                        value={updatedEndYear}
+                        onChange={(e) => setUpdatedEndYear(e.target.value)}
                     />
                 </div>
-
                 {error && <div className="error-message">{error}</div>}
-
                 <button className="update-button" onClick={handleUpdate}>
                     Update Parameters
                 </button>
@@ -106,13 +127,21 @@ export default function Analysis() {
             {/* Right: Results and Graphs Container */}
             <div className="results-container">
                 <h2 className="results-title">Analysis Results</h2>
-                    <div className="current-data">
-                        <p><strong>Word:</strong> {word || "Not provided"}</p>
-                        <p><strong>Start Year:</strong> {startYear || "Not provided"}</p>
-                        <p><strong>End Year:</strong> {endYear || "Not provided"}</p>
-                    </div>
+                <div className="current-data">
+                    <p><strong>Word:</strong> {word || "Not provided"}</p>
+                    <p><strong>Start Year:</strong> {startYear || "Not provided"}</p>
+                    <p><strong>End Year:</strong> {endYear || "Not provided"}</p>
+                </div>
                 <div className="results-placeholder">
-                    <p>The analysis results will appear here.</p>
+                    <img
+                        src={`${imagePaths[currentImageIndex]}?key=${imageKey}`}
+                        alt={`Analysis Result ${currentImageIndex + 1}`}
+                        className="result-image"
+                    />
+                </div>
+                <div className="navigation-arrows">
+                        <button onClick={handlePreviousImage}>&lt; Previous</button>
+                        <button onClick={handleNextImage}>Next &gt;</button>
                 </div>
             </div>
         </div>

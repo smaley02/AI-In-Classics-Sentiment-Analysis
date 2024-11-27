@@ -22,6 +22,7 @@ def analyze_word():
             return jsonify({"error": "All fields are required"}), 400
 
         # Process data here
+        print(f"Processing analysis for {word} ({start_year}-{end_year})")
 
         # Repackage data
         response_data = {
@@ -30,8 +31,7 @@ def analyze_word():
             "endYear": end_year,
             "message": "Analysis completed!" 
         }
-
-        print(response_data)
+        
         return jsonify(response_data)
     except Exception as e:
         print("Error during processing:", e)
