@@ -17,6 +17,7 @@ def charts_from_word(word, start_date, end_date):
     # Convert to numpy array
     word1 = df.to_numpy()
     line_best_fit(word1, start_date, end_date, "frequency")
+
     #now for sentiment
     df2 = pd.read_csv('greek_word_sentiment/' + word + '_sentiment_data.csv')
     df2 = df2[['year', 'mean_weighted_sentiment']]
@@ -63,10 +64,11 @@ def line_best_fit(input, start_date, end_date, mode = "freqency"):
     plt.ylabel(mode)
     plt.xlim(max(X.min(), start_date), min(X.max(), end_date))
     plt.plot(X_plot, y_plot, color='red', label=f'Best fit: degree={best_degree}, alpha={best_alpha}')
-    if(max(X.min(), start_date) < -25 and min(X.max(), end_date) > -25):
-        plt.axvline(x=-25, color='green', linestyle='--', label='Fall of Roman Republic')
+    if(max(X.min(), start_date) < -27 and min(X.max(), end_date) > -27):
+        plt.axvline(x=-27, color='green', linestyle='--', label='Fall of Roman Republic')
     plt.legend()
     plt.gcf().set_size_inches(8, 5)
     plt.savefig(f'temp/current_' + mode, dpi=100)
+    plt.clf()
 if __name__ == '__main__':
-    charts_from_word('α', 0, 600)
+    charts_from_word('α', -100, 600)
