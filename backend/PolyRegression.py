@@ -8,6 +8,9 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.pipeline import Pipeline
 import pandas as pd
 
+import matplotlib
+matplotlib.use('agg')
+
 # Load the CSV file
 def charts_from_word(word, start_date, end_date):
     df = pd.read_csv('greek_word_usage_frequencies/' + word + '_usage_frequencies.csv')
