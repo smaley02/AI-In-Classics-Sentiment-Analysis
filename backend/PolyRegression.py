@@ -16,8 +16,13 @@ def charts_from_word(word, start_date, end_date):
     df = df[['year', 'word_usage_at_year']]
     # Convert to numpy array
     word1 = df.to_numpy()
-    line_best_fit(word1, start_date, end_date)
-def line_best_fit(input, start_date, end_date):
+    line_best_fit(word1, start_date, end_date, "frequency")
+    #now for sentiment
+    df2 = pd.read_csv('greek_word_sentiment/' + word + '_sentiment_data.csv')
+    df2 = df2[['year', 'mean_weighted_sentiment']]
+    word2 = df2.to_numpy()
+    line_best_fit(word2, start_date, end_date, "sentiment")
+def line_best_fit(input, start_date, end_date, mode = "freqency"):
     # Extracting the data
     X = input[:, 0].reshape(-1, 1)
     y = input[:, 1]
@@ -50,16 +55,16 @@ def line_best_fit(input, start_date, end_date):
     # Fitting the model with the best parameters
     best_model = grid_search.best_estimator_
 
-    # Plotting the results
+    # Plotting the results - names depend on "mode"
     plt.scatter(X, y, color='blue', label='Data')
     X_plot = numpy.linspace(max(X.min(), start_date), min(X.max(), end_date), 100).reshape(-1, 1)
     y_plot = best_model.predict(X_plot)
     plt.xlabel('Year')
-    plt.ylabel('Frequency')
+    plt.ylabel(mode)
     plt.xlim(max(X.min(), start_date), min(X.max(), end_date))
     plt.plot(X_plot, y_plot, color='red', label=f'Best fit: degree={best_degree}, alpha={best_alpha}')
     plt.legend()
     plt.gcf().set_size_inches(8, 5)
-    plt.savefig(f'temp/current_frequency', dpi=100)
+    plt.savefig(f'temp/current_' + mode, dpi=100)
 if __name__ == '__main__':
     charts_from_word('α', 0, 600)
