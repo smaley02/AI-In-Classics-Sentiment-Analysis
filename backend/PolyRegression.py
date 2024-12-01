@@ -3,7 +3,7 @@
 import numpy
 import matplotlib.pyplot as plt 
 from sklearn.preprocessing import PolynomialFeatures
-from sklearn.linear_model import Ridge
+from sklearn.linear_model import Lasso
 from sklearn.model_selection import GridSearchCV
 from sklearn.pipeline import Pipeline
 import pandas as pd
@@ -39,13 +39,13 @@ def line_best_fit(input, start_date, end_date, word, mode = "freqency"):
 
     pipeline = Pipeline([
         ('poly', PolynomialFeatures()),
-        ('ridge', Ridge())
+        ('lasso', Lasso())
     ])
 
     # Defining the parameter grid
     param_grid = {
         'poly__degree': degrees,
-        'ridge__alpha': alphas
+        'lasso__alpha': alphas
     }
 
     # Performing grid search with cross-validation
@@ -54,7 +54,7 @@ def line_best_fit(input, start_date, end_date, word, mode = "freqency"):
 
     # Extracting the best parameters
     best_degree = grid_search.best_params_['poly__degree']
-    best_alpha = grid_search.best_params_['ridge__alpha']
+    best_alpha = grid_search.best_params_['lasso__alpha']
 
     # Fitting the model with the best parameters
     best_model = grid_search.best_estimator_
