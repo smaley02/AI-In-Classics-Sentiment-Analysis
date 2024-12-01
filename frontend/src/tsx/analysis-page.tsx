@@ -3,13 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { useLocation } from "react-router-dom"; 
 import "../css/styles.css";
 import current_frequency from "../../../backend/temp/current_frequency.png";
-import copy_1 from "../../../backend/temp/copy_1.png"; // change as needed
-import copy_2 from  "../../../backend/temp/copy_2.png"; // change as needed
+import current_sentiment from "../../../backend/temp/current_sentiment.png"; // change as needed
 
 const imagePaths = [
     current_frequency,
-    copy_1,
-    copy_2,
+    current_sentiment
 ];
 
 export default function Analysis() {
