@@ -1,6 +1,7 @@
 import os
 from flask import Flask, jsonify, request
 from flask_cors import CORS  # To handle CORS issues
+from PolyRegression import charts_from_word
 
 app = Flask(__name__)
 CORS(app)  # Allow requests from React frontend
@@ -23,7 +24,7 @@ def analyze_word():
 
         # Process data here
         print(f"Processing analysis for {word} ({start_year}-{end_year})")
-
+        charts_from_word(word, int(start_year), int(end_year))
         # Repackage data
         response_data = {
             "word": word,

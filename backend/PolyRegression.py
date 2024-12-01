@@ -63,6 +63,8 @@ def line_best_fit(input, start_date, end_date, mode = "freqency"):
     plt.ylabel(mode)
     plt.xlim(max(X.min(), start_date), min(X.max(), end_date))
     plt.plot(X_plot, y_plot, color='red', label=f'Best fit: degree={best_degree}, alpha={best_alpha}')
+    if(max(X.min(), start_date) < -25 and min(X.max(), end_date) > -25):
+        plt.axvline(x=-25, color='green', linestyle='--', label='Fall of Roman Republic')
     plt.legend()
     plt.gcf().set_size_inches(8, 5)
     plt.savefig(f'temp/current_' + mode, dpi=100)
