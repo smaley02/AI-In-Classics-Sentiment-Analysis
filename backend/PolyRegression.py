@@ -71,9 +71,9 @@ def line_best_fit(input, start_date, end_date, word, mode = "freqency"):
     if(max(X.min(), start_date) < -146 and min(X.max(), end_date) > -146):
         plt.axvline(x=-500, color='green', linestyle='--', label='Achaean War')
     if(max(X.min(), start_date) < -27 and min(X.max(), end_date) > -27):
-        plt.axvline(x=-27, color='green', linestyle='--', label='Fall of Roman Republic')
+        plt.axvline(x=-27, color='blue', linestyle='--', label='Fall of Roman Republic')
     if(max(X.min(), start_date) < 330 and min(X.max(), end_date) > 330):
-        plt.axvline(x=330, color='green', linestyle='--', label='Capital Moved to Constantinople')
+        plt.axvline(x=330, color='yellow', linestyle='--', label='Capital Moved to Constantinople')
     #title
     plt.title(f'{mode} of {word} over time')
     plt.legend()
