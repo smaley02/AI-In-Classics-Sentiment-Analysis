@@ -24,6 +24,7 @@ def analyze_word():
 
         # Process data here
         print(f"Processing analysis for {word} ({start_year}-{end_year})")
+        
         charts_from_word(word, int(start_year), int(end_year))
         # Repackage data
         response_data = {

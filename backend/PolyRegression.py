@@ -16,14 +16,14 @@ def charts_from_word(word, start_date, end_date):
     df = df[['year', 'word_usage_at_year']]
     # Convert to numpy array
     word1 = df.to_numpy()
-    line_best_fit(word1, start_date, end_date, "frequency")
+    line_best_fit(word1, start_date, end_date, word, "frequency")
 
     #now for sentiment
     df2 = pd.read_csv('greek_word_sentiment/' + word + '_sentiment_data.csv')
     df2 = df2[['year', 'mean_weighted_sentiment']]
     word2 = df2.to_numpy()
-    line_best_fit(word2, start_date, end_date, "sentiment")
-def line_best_fit(input, start_date, end_date, mode = "freqency"):
+    line_best_fit(word2, start_date, end_date, word, "sentiment")
+def line_best_fit(input, start_date, end_date, word, mode = "freqency"):
     # Extracting the data
     X = input[:, 0].reshape(-1, 1)
     y = input[:, 1]
@@ -71,6 +71,8 @@ def line_best_fit(input, start_date, end_date, mode = "freqency"):
         plt.axvline(x=-27, color='green', linestyle='--', label='Fall of Roman Republic')
     if(max(X.min(), start_date) < 330 and min(X.max(), end_date) > 330):
         plt.axvline(x=330, color='green', linestyle='--', label='Capital Moved to Constantinople')
+    #title
+    plt.title(f'{mode} of {word} over time')
     plt.legend()
     plt.gcf().set_size_inches(8, 5)
     plt.savefig(f'temp/current_' + mode, dpi=100)
