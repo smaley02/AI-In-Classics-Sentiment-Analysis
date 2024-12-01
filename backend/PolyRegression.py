@@ -13,7 +13,7 @@ matplotlib.use('agg')
 
 # Load the CSV file
 def charts_from_word(word, start_date, end_date):
-    df = pd.read_csv('greek_word_usage_frequencies/' + word + '_usage_frequencies.csv')
+    df = pd.read_csv('greek_word_usage_frequency_dataset/' + word + '_usage_frequencies_data.csv')
 
     # Drop all columns except 'word' and 'year'
     df = df[['year', 'word_usage_at_year']]
@@ -22,7 +22,7 @@ def charts_from_word(word, start_date, end_date):
     line_best_fit(word1, start_date, end_date, word, "frequency")
 
     #now for sentiment
-    df2 = pd.read_csv('greek_word_sentiment/' + word + '_sentiment_data.csv')
+    df2 = pd.read_csv('greek_word_sentiment_dataset/' + word + '_sentiment_data.csv')
     df2 = df2[['year', 'mean_weighted_sentiment']]
     word2 = df2.to_numpy()
     line_best_fit(word2, start_date, end_date, word, "sentiment")
