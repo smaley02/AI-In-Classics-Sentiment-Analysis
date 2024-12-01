@@ -13,7 +13,7 @@ matplotlib.use('agg')
 
 # Load the CSV file
 def charts_from_word(word, start_date, end_date):
-    df = pd.read_csv('greek_word_usage_frequency_dataset/' + word + '_usage_frequencies_data.csv')
+    df = pd.read_csv('greek_word_usage_frequency_dataset/' + word + '_usage_frequency_data.csv')
 
     # Drop all columns except 'word' and 'year'
     df = df[['year', 'word_usage_at_year']]
