@@ -55,7 +55,7 @@ export default function InputForm() {
                 onChange={(e) => setWord(e.target.value)}
             />
 
-            <label className="form-label" htmlFor="time-period">Time Period <span className="info-text">+ for CE | - for BCE</span></label>
+            <label className="form-label" htmlFor="time-period">Time Period <span className="info-text">- for BCE | + for CE </span></label>
             <div className="time-period-container">
                 <input
                     type="text"
